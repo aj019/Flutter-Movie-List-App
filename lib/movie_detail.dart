@@ -2,23 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 
-class MovieDetail extends StatefulWidget{
-
-  final movie;
-  MovieDetail(this.movie);
-
-  @override
-  MovieDetailState createState() {
-    return new MovieDetailState(movie);
-  }
-
-}
-
-class MovieDetailState extends State<MovieDetail> {
+class MovieDetail extends StatelessWidget{
 
   final movie;
   var image_url = 'https://image.tmdb.org/t/p/w500/';
-  MovieDetailState(this.movie);
+  MovieDetail(this.movie);
   Color mainColor = const Color(0xff3C3261);
 
   @override
