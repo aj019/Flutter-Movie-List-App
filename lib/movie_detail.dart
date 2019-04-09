@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
 
 class MovieDetail extends StatelessWidget {
   final movie;
-  var image_url = 'https://image.tmdb.org/t/p/w500/';
+  var baseImageUrl = 'https://image.tmdb.org/t/p/w500/';
+
   MovieDetail(this.movie);
+
   Color mainColor = const Color(0xff3C3261);
 
   @override
@@ -12,7 +15,7 @@ class MovieDetail extends StatelessWidget {
     return new Scaffold(
       body: new Stack(fit: StackFit.expand, children: [
         new Image.network(
-          image_url + movie['poster_path'],
+          baseImageUrl + movie['poster_path'],
           fit: BoxFit.cover,
         ),
         new BackdropFilter(
@@ -36,7 +39,7 @@ class MovieDetail extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(10.0),
                       image: new DecorationImage(
                           image: new NetworkImage(
-                              image_url + movie['poster_path']),
+                              baseImageUrl + movie['poster_path']),
                           fit: BoxFit.cover),
                       boxShadow: [
                         new BoxShadow(
@@ -68,7 +71,9 @@ class MovieDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                new Text(movie['overview'],style: new TextStyle(color: Colors.white, fontFamily: 'Arvo')),
+                new Text(movie['overview'],
+                    style:
+                        new TextStyle(color: Colors.white, fontFamily: 'Arvo')),
                 new Padding(padding: const EdgeInsets.all(10.0)),
                 new Row(
                   children: <Widget>[
@@ -114,8 +119,7 @@ class MovieDetail extends StatelessWidget {
                           decoration: new BoxDecoration(
                               borderRadius: new BorderRadius.circular(10.0),
                               color: const Color(0xaa3C3261)),
-                        )
-                    ),
+                        )),
                   ],
                 )
               ],
