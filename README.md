@@ -1,6 +1,6 @@
-# flutter_movify
+# Flutter Movies - Reviews and Info
 
-A new Flutter application.
+My first try at Flutter developing a full fledged Flutter application with my favorite topic - MOVIES & TV SHOWS
 
 ## Getting Started
 
