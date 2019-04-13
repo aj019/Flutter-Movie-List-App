@@ -116,7 +116,7 @@ class MovieCell extends StatelessWidget {
   final movies;
   final i;
   Color mainColor = const Color(0xff3C3261);
-  var image_url = 'https://image.tmdb.org/t/p/w500/';
+  var imageUrl = 'https://image.tmdb.org/t/p/w500/';
 
   MovieCell(this.movies, this.i);
 
@@ -140,7 +140,7 @@ class MovieCell extends StatelessWidget {
                   color: Colors.grey,
                   image: new DecorationImage(
                       image: new NetworkImage(
-                          image_url + movies[i]['poster_path']),
+                          imageUrl + movies[i]['poster_path']),
                       fit: BoxFit.cover),
                   boxShadow: [
                     new BoxShadow(
