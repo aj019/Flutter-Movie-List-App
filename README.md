@@ -1,6 +1,6 @@
-# Flutter Movies
+# Flutter Movies - Reviews and Info
 
-A new Flutter application for movie information from TVDb and iMDB
+My first try at Flutter developing a full fledged Flutter application with my favorite topic - MOVIES & TV SHOWS
 
 ### Getting Started
 
