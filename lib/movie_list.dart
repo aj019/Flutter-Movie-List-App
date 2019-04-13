@@ -83,7 +83,12 @@ class MovieListState extends State<MovieList> {
   }
 }
 
+Future<String> loadAsset() async {
+  return await rootBundle.loadString('assets/config.json');
+}
+
 Future<Map> getJson() async {
+  var keys = loadAsset().then(onValue)
   var url =
       'http://api.themoviedb.org/3/discover/movie?api_key=004cbaf19212094e32aa9ef6f6577f22';
   http.Response response = await http.get(url);
@@ -139,8 +144,8 @@ class MovieCell extends StatelessWidget {
                   borderRadius: new BorderRadius.circular(10.0),
                   color: Colors.grey,
                   image: new DecorationImage(
-                      image: new NetworkImage(
-                          imageUrl + movies[i]['poster_path']),
+                      image:
+                          new NetworkImage(imageUrl + movies[i]['poster_path']),
                       fit: BoxFit.cover),
                   boxShadow: [
                     new BoxShadow(
