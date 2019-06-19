@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 
 import 'movie_detail.dart';
@@ -84,13 +85,13 @@ class MovieListState extends State<MovieList> {
 }
 
 Future<String> loadAsset() async {
-  return await rootBundle.loadString('assets/config.json');
+  return await rootBundle.loadString('./assets/keys.json');
 }
 
 Future<Map> getJson() async {
-  var keys = loadAsset().then(onValue)
-  var url =
-      'http://api.themoviedb.org/3/discover/movie?api_key=004cbaf19212094e32aa9ef6f6577f22';
+  var keys = await loadAsset();
+  var tmdbKey = keys[0];
+  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=' + tmdbKey;
   http.Response response = await http.get(url);
   return json.decode(response.body);
 }
