@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'movie_detail.dart';
-
+import 'config.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -13,10 +13,8 @@ class MovieList extends StatefulWidget {
 }
 
 class MovieListState extends State<MovieList> {
-
   var movies;
   Color mainColor = const Color(0xff3C3261);
-
 
   void getData() async {
     var data = await getJson();
@@ -42,7 +40,10 @@ class MovieListState extends State<MovieList> {
         ),
         title: new Text(
           'Movies',
-          style: new TextStyle(color: mainColor,fontFamily: 'Arvo',fontWeight: FontWeight.bold),
+          style: new TextStyle(
+              color: mainColor,
+              fontFamily: 'Arvo',
+              fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
           new Icon(
@@ -61,18 +62,17 @@ class MovieListState extends State<MovieList> {
               child: new ListView.builder(
                   itemCount: movies == null ? 0 : movies.length,
                   itemBuilder: (context, i) {
-                    return  new FlatButton(
-
-                      child: new MovieCell(movies,i),
+                    return new FlatButton(
+                      child: new MovieCell(movies, i),
                       padding: const EdgeInsets.all(0.0),
-                      onPressed: (){
-                        Navigator.push(context, new MaterialPageRoute(builder: (context){
+                      onPressed: () {
+                        Navigator.push(context,
+                            new MaterialPageRoute(builder: (context) {
                           return new MovieDetail(movies[i]);
                         }));
                       },
                       color: Colors.white,
                     );
-
                   }),
             )
           ],
@@ -83,17 +83,14 @@ class MovieListState extends State<MovieList> {
 }
 
 Future<Map> getJson() async {
-  var url =
-      'http://api.themoviedb.org/3/discover/movie?api_key=004cbaf19212094e32aa9ef6f6577f22';
-  http.Response response = await http.get(url);
+  var apiKey = getApiKey();
+  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=${apiKey}';
+  var response = await http.get(url);
   return json.decode(response.body);
 }
 
-
-class MovieTitle extends StatelessWidget{
-
+class MovieTitle extends StatelessWidget {
   final Color mainColor;
-
 
   MovieTitle(this.mainColor);
 
@@ -107,23 +104,19 @@ class MovieTitle extends StatelessWidget{
             fontSize: 40.0,
             color: mainColor,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Arvo'
-        ),
+            fontFamily: 'Arvo'),
         textAlign: TextAlign.left,
       ),
     );
   }
-
 }
 
-
-class MovieCell extends StatelessWidget{
-
+class MovieCell extends StatelessWidget {
   final movies;
   final i;
   Color mainColor = const Color(0xff3C3261);
   var image_url = 'https://image.tmdb.org/t/p/w500/';
-  MovieCell(this.movies,this.i);
+  MovieCell(this.movies, this.i);
 
   @override
   Widget build(BuildContext context) {
@@ -157,29 +150,29 @@ class MovieCell extends StatelessWidget{
               ),
             ),
             new Expanded(
-
                 child: new Container(
-                  margin: const EdgeInsets.fromLTRB(16.0,0.0,16.0,0.0),
-                  child: new Column(children: [
-                    new Text(
-                      movies[i]['title'],
-                      style: new TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Arvo',
-                          fontWeight: FontWeight.bold,
-                          color: mainColor),
-                    ),
-                    new Padding(padding: const EdgeInsets.all(2.0)),
-                    new Text(movies[i]['overview'],
-                      maxLines: 3,
-                      style: new TextStyle(
-                          color: const Color(0xff8785A4),
-                          fontFamily: 'Arvo'
-                      ),)
-                  ],
-                    crossAxisAlignment: CrossAxisAlignment.start,),
-                )
-            ),
+              margin: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
+              child: new Column(
+                children: [
+                  new Text(
+                    movies[i]['title'],
+                    style: new TextStyle(
+                        fontSize: 20.0,
+                        fontFamily: 'Arvo',
+                        fontWeight: FontWeight.bold,
+                        color: mainColor),
+                  ),
+                  new Padding(padding: const EdgeInsets.all(2.0)),
+                  new Text(
+                    movies[i]['overview'],
+                    maxLines: 3,
+                    style: new TextStyle(
+                        color: const Color(0xff8785A4), fontFamily: 'Arvo'),
+                  )
+                ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+            )),
           ],
         ),
         new Container(
@@ -190,8 +183,5 @@ class MovieCell extends StatelessWidget{
         )
       ],
     );
-
   }
-
 }
-
