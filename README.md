@@ -1,8 +1,3 @@
-# flutter_movify
+# Demo
 
-A new Flutter application.
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/7893859/62185427-1de14880-b380-11e9-88c6-ee408c66323f.gif)
